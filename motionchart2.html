@@ -1,0 +1,36 @@
+install.packages("googleVis")
+library(googleVis)
+mydata.df<-read.csv("wdi2013.csv",header = T)
+mydata.df
+mysct<-data.frame(mydata.df$Income, mydata.df$lifeExp)
+Scatter1<-gvisScatterChart(mysct)
+plot(Scatter1)
+
+
+
+mydata.df<-read.csv("wdi2013.csv",header = T)
+head(mydata.df)
+str(mydata.df)
+df<-mydata.df[,c(3,4,5)]
+library(googleVis)
+bubble1 <-
+  gvisBubbleChart(mydata.df,
+                  idvar = "lifeExp",
+                  xvar = "Income",
+                  yvar = "Population")
+plot(bubble1)
+
+bubble2 <-
+  gvisBubbleChart(mydata.df,
+                  idvar = "lifeExp",
+                  xvar = "Income",
+                  yvar = "Population",
+                  colorvar = "Region")
+plot(bubble2)
+
+
+
+mydata2.df<-read.csv("wdi.time.csv",header = T)
+head(mydata2.df)
+library(googleVis)
+M1 <- gvisMotionChart(mydata2.df,idvar= "Income",timevar="Date")
